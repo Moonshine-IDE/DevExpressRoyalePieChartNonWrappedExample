@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:j="library://ns.apache.org/royale/jewel"
+		  itemsVerticalAlign="itemsCentered" initComplete="onContentInitComplete(event)">
+	<fx:Script>
+	<![CDATA[
+		private var dataSource:Array = [{
+											country: 'Russia',
+											area: 12
+										}, 
+										{
+											country: 'Canada',
+											area: 7
+										}, 
+										{
+											country: 'USA',
+											area: 7
+										}, 
+										{
+											country: 'China',
+											area: 7
+										}, 
+										{
+											country: 'Brazil',
+											area: 6
+										}, 
+										{
+											country: 'Australia',
+											area: 5
+										}, 
+										{
+											country: 'India',
+											area: 2
+										}, 
+										{
+											country: 'Others',
+											area: 55
+										}];
+		
+		private function onContentInitComplete(event:Event):void
+		{
+			var configObj:Object = {
+				size: {
+					width: 500
+				},
+				palette: 'bright',
+				dataSource: this.dataSource,
+				series: [
+					{
+							argumentField: 'country',
+							valueField: 'area',
+							label: {
+							visible: true,
+							connector: {
+								visible: true,
+								width: 1
+							}
+						}
+					}
+				],
+				title: 'Area of Countries',
+				export: {
+					enabled: true
+				},
+				onPointClick: function(e:Object):void {
+					toggleVisibility(e.target);
+				},
+				onLegendClick: function(e:Object):void {
+      				toggleVisibility(e.points[0]);
+				}
+			}
+			
+			window["$"](pieChart.element).dxPieChart(configObj);
+		}
+		
+		private function toggleVisibility(item:Object):void 
+		{
+			if (item.isVisible()) 
+			{
+				item.hide();
+			} 
+			else 
+			{
+				item.show();
+			}
+		}
+	]]>
+</fx:Script>
+	<j:Group id="pieChart" />
+</j:VGroup>
