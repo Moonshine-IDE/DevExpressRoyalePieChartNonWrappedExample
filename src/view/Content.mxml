@@ -4,10 +4,7 @@
 		  itemsVerticalAlign="itemsCentered" initComplete="onContentInitComplete(event)">
 	<fx:Script>
 	<![CDATA[
-		private var dataSource:Array = [{
-											country: 'Russia',
-											area: 12
-										}, 
+		private var dataSource:Array = [
 										{
 											country: 'Canada',
 											area: 7
